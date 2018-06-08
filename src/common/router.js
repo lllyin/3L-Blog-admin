@@ -172,10 +172,13 @@ export const getRouterData = app => {
     //   component: dynamicWrapper(app, [], () => import('../routes/User/SomeComponent')),
     // },
     '/article/add': {
-      component: dynamicWrapper(app, [], () => import('../routes/Article/NewArticle')),
+      component: dynamicWrapper(app, ['article'], () => import('../routes/Article/NewArticle')),
+    },
+    '/article/edit': {
+      component: dynamicWrapper(app, ['article'], () => import('../routes/Article/EditArticle')),
     },
     '/article/list': {
-      component: dynamicWrapper(app, [], () => import('../routes/Article/ArticleList')),
+      component: dynamicWrapper(app, ['article'], () => import('../routes/Article/ArticleList')),
     },
   };
   // Get name from ./menu.js or just set it in the router data.

@@ -14,7 +14,7 @@ const { TextArea } = Input;
   article,
   loading,
 }))
-export default class NewArticle extends Component {
+export default class ArticleDetail extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -60,8 +60,7 @@ export default class NewArticle extends Component {
 
     return (
       <PageHeaderLayout
-        title="新增文章"
-        content="文章千古事，得失寸心知。"
+        title="文章详情"
       >
         <Card>
           <div className={styles.title}>
