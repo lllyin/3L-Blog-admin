@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component, Fragment } from 'react';
 import moment from 'moment';
 import { connect } from 'dva';
 import { Card, Row, Col, Form, Input, Button, Icon, Divider, Popconfirm, message } from 'antd';
@@ -19,17 +19,17 @@ const columns = [{
   title: '内容',
   dataIndex: 'content',
   key: 'content',
-  render: (text) => (<span>{text.substr(0, 50)}</span>),
+  render: text => (<span>{text.substr(0, 50)}</span>),
 }, {
   title: '创建时间',
   dataIndex: 'create_time',
   key: 'create_time',
-  render: (time) => (<span>{moment(time * 1000).format('YYYY-MM-DD HH:mm:ss')}</span>),
+  render: time => (<span>{moment(time * 1000).format('YYYY-MM-DD HH:mm:ss')}</span>),
 }, {
   title: '更新时间',
   dataIndex: 'update_time',
   key: 'update_time',
-  render: (time) => (<span>{time ? moment(time * 1000).format('YYYY-MM-DD HH:mm:ss') : '无修改记录'}</span>),
+  render: time => (<span>{time ? moment(time * 1000).format('YYYY-MM-DD HH:mm:ss') : '无修改记录'}</span>),
 }, {
   title: '操作',
   dataIndex: 'action',
@@ -41,7 +41,7 @@ const columns = [{
       <a href={`#/article/edit?id=${record._id}`}>编辑</a>
     </Fragment>
   ),
-}]
+}];
 
 @connect(({ article, loading }) => ({
   article,
@@ -61,7 +61,7 @@ export default class ArticleList extends Component {
     const { dispatch } = this.props;
     dispatch({
       type: 'article/fetch',
-    })
+    });
   }
 
   render() {
@@ -72,7 +72,7 @@ export default class ArticleList extends Component {
       selectedRowKeys,
       onChange: this.onSelectChange,
     };
-
+    console.log(article);
     return (
       <PageHeaderLayout
         title="文章列表"
@@ -91,6 +91,6 @@ export default class ArticleList extends Component {
           />
         </Card>
       </PageHeaderLayout>
-    )
+    );
   }
 }

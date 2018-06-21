@@ -25,9 +25,10 @@ export default class CustomizableTable extends React.Component {
     const paginationProps = {
       showSizeChanger: true,
       showQuickJumper: true,
-      defaultCurrent: defaultPage - 0 || 1,
+      defaultCurrent: defaultPage ? defaultPage - 0 : 1,
       total,
     };
+    console.log('table', data, columns);
 
     return (
       <div className={styles.standardTable}>
@@ -48,8 +49,8 @@ export default class CustomizableTable extends React.Component {
           rowSelection={rowSelection}
           dataSource={data}
           columns={columns}
-          pagination={paginationProps}
-          onChange={this.handleTableChange}
+          // pagination={paginationProps}
+          // onChange={this.handleTableChange}
           scroll={scroll || { x: 1800 }}
         />
       </div>

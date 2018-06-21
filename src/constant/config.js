@@ -1,4 +1,4 @@
-export const API_URL = "http://localhost:9600/api/blog";
+export const API_URL = '//testapi.liaolunling.top/api/blog';
 
 // 接口请求状态码
 export const SUCCESS_STATUS = 200; // 操作成功
