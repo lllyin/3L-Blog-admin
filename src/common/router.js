@@ -16,13 +16,13 @@ const dynamicWrapper = (app, models, component) => {
   // () => require('module')
   // transformed by babel-plugin-dynamic-import-node-sync
   if (component.toString().indexOf('.then(') < 0) {
-    models.forEach(model => {
+    models.forEach((model) => {
       if (modelNotExisted(app, model)) {
         // eslint-disable-next-line
         app.model(require(`../models/${model}`).default);
       }
     });
-    return props => {
+    return (props) => {
       if (!routerDataCache) {
         routerDataCache = getRouterData(app);
       }
@@ -42,7 +42,7 @@ const dynamicWrapper = (app, models, component) => {
       if (!routerDataCache) {
         routerDataCache = getRouterData(app);
       }
-      return component().then(raw => {
+      return component().then((raw) => {
         const Component = raw.default || raw;
         return props =>
           createElement(Component, {
@@ -56,7 +56,7 @@ const dynamicWrapper = (app, models, component) => {
 
 function getFlatMenuData(menus) {
   let keys = {};
-  menus.forEach(item => {
+  menus.forEach((item) => {
     if (item.children) {
       keys[item.path] = { ...item };
       keys = { ...keys, ...getFlatMenuData(item.children) };
@@ -67,74 +67,10 @@ function getFlatMenuData(menus) {
   return keys;
 }
 
-export const getRouterData = app => {
+export const getRouterData = (app) => {
   const routerConfig = {
     '/': {
       component: dynamicWrapper(app, ['user', 'login'], () => import('../layouts/BasicLayout')),
-    },
-    '/dashboard/analysis': {
-      component: dynamicWrapper(app, ['chart'], () => import('../routes/Dashboard/Analysis')),
-    },
-    '/dashboard/monitor': {
-      component: dynamicWrapper(app, ['monitor'], () => import('../routes/Dashboard/Monitor')),
-    },
-    '/dashboard/workplace': {
-      component: dynamicWrapper(app, ['project', 'activities', 'chart'], () =>
-        import('../routes/Dashboard/Workplace')
-      ),
-      // hideInBreadcrumb: true,
-      // name: '工作台',
-      // authority: 'admin',
-    },
-    '/form/basic-form': {
-      component: dynamicWrapper(app, ['form'], () => import('../routes/Forms/BasicForm')),
-    },
-    '/form/step-form': {
-      component: dynamicWrapper(app, ['form'], () => import('../routes/Forms/StepForm')),
-    },
-    '/form/step-form/info': {
-      name: '分步表单（填写转账信息）',
-      component: dynamicWrapper(app, ['form'], () => import('../routes/Forms/StepForm/Step1')),
-    },
-    '/form/step-form/confirm': {
-      name: '分步表单（确认转账信息）',
-      component: dynamicWrapper(app, ['form'], () => import('../routes/Forms/StepForm/Step2')),
-    },
-    '/form/step-form/result': {
-      name: '分步表单（完成）',
-      component: dynamicWrapper(app, ['form'], () => import('../routes/Forms/StepForm/Step3')),
-    },
-    '/form/advanced-form': {
-      component: dynamicWrapper(app, ['form'], () => import('../routes/Forms/AdvancedForm')),
-    },
-    '/list/table-list': {
-      component: dynamicWrapper(app, ['rule'], () => import('../routes/List/TableList')),
-    },
-    '/list/basic-list': {
-      component: dynamicWrapper(app, ['list'], () => import('../routes/List/BasicList')),
-    },
-    '/list/card-list': {
-      component: dynamicWrapper(app, ['list'], () => import('../routes/List/CardList')),
-    },
-    '/list/search': {
-      component: dynamicWrapper(app, ['list'], () => import('../routes/List/List')),
-    },
-    '/list/search/projects': {
-      component: dynamicWrapper(app, ['list'], () => import('../routes/List/Projects')),
-    },
-    '/list/search/applications': {
-      component: dynamicWrapper(app, ['list'], () => import('../routes/List/Applications')),
-    },
-    '/list/search/articles': {
-      component: dynamicWrapper(app, ['list'], () => import('../routes/List/Articles')),
-    },
-    '/profile/basic': {
-      component: dynamicWrapper(app, ['profile'], () => import('../routes/Profile/BasicProfile')),
-    },
-    '/profile/advanced': {
-      component: dynamicWrapper(app, ['profile'], () =>
-        import('../routes/Profile/AdvancedProfile')
-      ),
     },
     '/result/success': {
       component: dynamicWrapper(app, [], () => import('../routes/Result/Success')),
@@ -188,7 +124,7 @@ export const getRouterData = app => {
   // eg. {name,authority ...routerConfig }
   const routerData = {};
   // The route matches the menu
-  Object.keys(routerConfig).forEach(path => {
+  Object.keys(routerConfig).forEach((path) => {
     // Regular match item name
     // eg.  router /user/:id === /user/chen
     const pathRegexp = pathToRegexp(path);
