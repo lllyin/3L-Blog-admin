@@ -1,4 +1,8 @@
+// 网站API接口地址
 export const API_URL = '//testapi.liaolunling.top/api/blog';
+
+// 网站web前端地址
+export const WEB_URL = '//preview.liaolunling.top';
 
 // 接口请求状态码
 export const SUCCESS_STATUS = 200; // 操作成功

@@ -75,12 +75,13 @@ export const getRouterData = (app) => {
     '/article/add': {
       component: dynamicWrapper(app, ['article'], () => import('../routes/Article/NewArticle')),
     },
-    '/article/edit': {
-      component: dynamicWrapper(app, ['article'], () => import('../routes/Article/EditArticle')),
-    },
     '/article/list': {
       component: dynamicWrapper(app, ['article'], () => import('../routes/Article/ArticleList')),
     },
+    '/article/:list/edit': {
+      component: dynamicWrapper(app, ['article'], () => import('../routes/Article/EditArticle')),
+    },
+    
     '/result/success': {
       component: dynamicWrapper(app, [], () => import('../routes/Result/Success')),
     },

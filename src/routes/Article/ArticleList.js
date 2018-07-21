@@ -1,10 +1,10 @@
 import React, { Component, Fragment } from 'react';
 import moment from 'moment';
 import { connect } from 'dva';
-import { Card, Row, Col, Form, Input, Button, Icon, Divider, Popconfirm, message } from 'antd';
+import { Card, Form, Divider } from 'antd';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import CustomizableTable from '../../components/CustomTable/CustomizableTable';
-
+import { WEB_URL } from '../../constant/config'
 
 const columns = [{
   title: '序号',
@@ -36,9 +36,9 @@ const columns = [{
   key: 'action',
   render: (text, record) => (
     <Fragment>
-      <a href={`#/article/edit?id=${record._id}`}>查看</a>
+      <a href={`${WEB_URL}/#/blog/detail?id=${record._id}`} target="_blank" rel="noopener noreferrer">查看</a>
       <Divider type="vertical" />
-      <a href={`#/article/edit?id=${record._id}`}>编辑</a>
+      <a href={`#/article/list/edit?id=${record._id}`}>编辑</a>
     </Fragment>
   ),
 }];
